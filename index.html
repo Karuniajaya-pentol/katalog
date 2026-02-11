@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- 1. PENGATURAN TEMA (CSS VARIABLES) --- */
         :root {
             --primary-color: #FFC107; /* Kuning Emas */
             --bg-color: #FFF8E1;      /* Krem Lembut */
@@ -23,7 +22,7 @@
             color: var(--text-color);
         }
 
-        /* --- 2. HEADER --- */
+        /* --- 1. HEADER --- */
         header {
             background: linear-gradient(135deg, #FFC107, #FF9800);
             padding: 30px 20px;
@@ -31,22 +30,66 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .logo-perusahaan {
+            width: 80px;
+            height: auto;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
         header h1 {
             margin: 0;
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: #fff;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             text-transform: uppercase;
         }
 
         header p {
-            margin-top: 5px;
-            font-size: 1.1rem;
+            margin: 5px 0 0 0;
+            font-size: 1rem;
             color: #fff;
             font-weight: 500;
         }
 
-        /* --- 3. LAYOUT GRID PRODUK --- */
+        /* --- 2. BADGE SYSTEM --- */
+        .card-container {
+            position: relative;
+        }
+
+        .badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 5px 10px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            border-radius: 5px;
+            text-transform: uppercase;
+            z-index: 5;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .bg-best-seller { background-color: #D32F2F; color: white; border: 1px solid #FFC107; }
+        .bg-recommended { background-color: #1976D2; color: white; }
+        .bg-best-value { background-color: #388E3C; color: white; }
+
+        /* --- 3. LAYOUT GRID --- */
         .container {
             max-width: 1100px;
             margin: 30px auto;
@@ -59,7 +102,6 @@
             gap: 25px;
         }
 
-        /* --- 4. KARTU PRODUK --- */
         .card {
             background: white;
             border-radius: 12px;
@@ -93,7 +135,7 @@
         }
 
         .product-name {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin: 10px 0;
             font-weight: 700;
         }
@@ -120,14 +162,14 @@
             background-color: #128C7E;
         }
 
-        /* --- [BARU] 5. CSS UNTUK LOKASI (MAPS) --- */
+        /* --- 4. LOKASI & FOOTER --- */
         .location-section {
             background: white;
             padding: 40px 20px;
             margin-top: 50px;
             border-top: 5px solid var(--primary-color);
         }
-        
+
         .section-title {
             text-align: center;
             margin-bottom: 30px;
@@ -141,27 +183,22 @@
             border: 1px solid #ddd;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
         .map-wrapper iframe {
             width: 100%;
-            height: 350px; /* Tinggi peta */
+            height: 350px;
             border: 0;
         }
 
-        /* --- [BARU] 6. CSS UNTUK FOOTER & SOSMED --- */
         footer {
             text-align: center;
             padding: 30px 20px;
             background-color: #333;
             color: var(--primary-color);
-            font-size: 0.9rem;
         }
 
-        .social-icons {
-            margin-bottom: 20px;
-        }
+        .social-icons { margin-bottom: 20px; }
 
         .social-link {
             display: inline-flex;
@@ -180,7 +217,7 @@
 
         .social-link:hover { transform: translateY(-3px); background: var(--primary-color); color: #333; }
 
-        /* --- 7. MODAL / POP-UP GAMBAR (LIGHTBOX) --- */
+        /* --- 5. MODAL --- */
         .modal {
             display: none; 
             position: fixed; 
@@ -194,26 +231,64 @@
         .modal-content {
             max-width: 90%; max-height: 80vh;
             border: 4px solid #fff; border-radius: 8px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
             animation: zoom 0.3s;
         }
 
-        .modal-caption { color: white; margin-top: 15px; font-size: 1.2rem; }
         .close { position: absolute; top: 20px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer; }
+        
         @keyframes zoom { from {transform:scale(0)} to {transform:scale(1)} }
 
+        @media (max-width: 600px) {
+            .header-container { flex-direction: column; text-align: center; }
+            .header-text { text-align: center; }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>KATALOG PRODUK</h1>
-        <p>KARUNIA JAYA PENTOL | Pasuruan</p>
-        <small style="color: #FFF8E1;">Klik gambar untuk memperbesar</small>
+        <div class="header-container">
+            <img src="https://i.ibb.co.com/7tN39fP6/Logo-KJ-removebg-preview.png" alt="Logo Karunia Jaya" class="logo-perusahaan">
+            <div class="header-text">
+                <h1>KATALOG PRODUK</h1>
+                <p>KARUNIA JAYA PENTOL | Winongan - Pasuruan</p>
+            </div>
+        </div>
+        <small style="color: #FFF8E1; display: block; margin-top: 10px;">Klik gambar untuk memperbesar</small>
     </header>
 
     <div class="container">
         <div class="product-grid">
+
+            <div class="card card-container">
+                <div class="badge bg-best-seller"><i class="fas fa-fire"></i> Best Seller</div>
+                <img src="https://i.ibb.co.com/ZpwKGndP/KJ-Kecil.jpg" alt="Pentol KJ Kecil" class="card-img" onclick="openModal(this)">
+                <div class="card-body">
+                    <div class="product-name">Pentol KJ Kecil</div>
+                    <div class="product-price">Rp 15.000</div>
+                    <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+pesan+Pentol+KJ+Kecil" class="btn-wa">Pesan Sekarang</a>
+                </div>
+            </div>
+
+            <div class="card card-container">
+                <div class="badge bg-recommended"><i class="fas fa-thumbs-up"></i> Recommended</div>
+                <img src="https://i.ibb.co.com/n53VyKB/Whats-App-Image-2026-01-17-at.jpg" alt="Bakso Daging Kecil" class="card-img" onclick="openModal(this)">
+                <div class="card-body">
+                    <div class="product-name">Bakso Daging Kecil</div>
+                    <div class="product-price">Rp 25.000</div>
+                    <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+pesan+Bakso+Daging+Kecil" class="btn-wa">Pesan Sekarang</a>
+                </div>
+            </div>
+
+            <div class="card card-container">
+                <div class="badge bg-best-value"><i class="fas fa-tag"></i> Best Value</div>
+                <img src="https://i.ibb.co.com/qY7V4jH0/Whats-App-Image-2026-01-17-at-1.jpg" alt="Pentol Sedang Isi 25" class="card-img" onclick="openModal(this)">
+                <div class="card-body">
+                    <div class="product-name">Pentol Sedang Isi 25</div>
+                    <div class="product-price">Rp 48.000</div>
+                    <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+pesan+Pentol+Sedang+Isi+25" class="btn-wa">Pesan Sekarang</a>
+                </div>
+            </div>
 
             <div class="card">
                 <img src="https://i.ibb.co.com/QvWZyG1D/iiui.jpg" alt="Adonan Bakso Solo Halus" class="card-img" onclick="openModal(this)">
@@ -241,22 +316,31 @@
                     <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+pesan+Adonan+Bakso+Solo+Kasar" class="btn-wa">Pesan Sekarang</a>
                 </div>
             </div>
-
+          
             <div class="card">
-                <img src="https://i.ibb.co.com/HLj9m0pv/po.jpg" alt="Pentol KJ Kecil" class="card-img" onclick="openModal(this)">
+                <img src="https://i.ibb.co.com/7tYP5zDc/sapi-jpg.jpg" alt="Adonan Bakso Sapi" class="card-img" onclick="openModal(this)">
                 <div class="card-body">
-                    <div class="product-name">Pentol KJ Kecil</div>
-                    <div class="product-price">Rp 15.000</div>
-                    <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+pesan+Pentol+KJ+Kecil" class="btn-wa">Pesan Sekarang</a>
+                    <div class="product-name">Adonan Bakso Sapi</div>
+                    <div class="product-price">Rp 25.000</div>
+                    <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+pesan+Adonan+Bakso+Sapi" class="btn-wa">Pesan Sekarang</a>
                 </div>
             </div>
 
             <div class="card">
-                <img src="https://i.ibb.co.com/bjpcrb3J/rt.jpg" alt="Pentol KJ Besar" class="card-img" onclick="openModal(this)">
+                <img src="https://i.ibb.co.com/NnNMbXJH/Kj-Besar.jpg" alt="Pentol KJ Besar" class="card-img" onclick="openModal(this)">
                 <div class="card-body">
                     <div class="product-name">Pentol KJ Besar</div>
                     <div class="product-price">Rp 15.000</div>
                     <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+pesan+Pentol+KJ+Besar" class="btn-wa">Pesan Sekarang</a>
+                </div>
+            </div>
+          
+                      <div class="card">
+                <img src="https://i.ibb.co.com/TB3YGP04/Whats-App-Image-2026-01-17-at-10-03-11.jpg" alt="Pentol Daging Besar" class="card-img" onclick="openModal(this)">
+                <div class="card-body">
+                    <div class="product-name">Pentol Daging Besar</div>
+                    <div class="product-price">Rp 25.000</div>
+                    <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+pesan+Pentol+Daging+Besar" class="btn-wa">Pesan Sekarang</a>
                 </div>
             </div>
 
@@ -266,33 +350,6 @@
                     <div class="product-name">Pentol Klenger Isi 4</div>
                     <div class="product-price">Rp 40.000</div>
                     <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+pesan+Pentol+Klenger+Isi+4" class="btn-wa">Pesan Sekarang</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://i.ibb.co.com/n53VyKB/Whats-App-Image-2026-01-17-at.jpg" alt="Bakso Daging Kecil" class="card-img" onclick="openModal(this)">
-                <div class="card-body">
-                    <div class="product-name">Bakso Daging Kecil</div>
-                    <div class="product-price">Rp 25.000</div>
-                    <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+pesan+Bakso+Daging+Kecil" class="btn-wa">Pesan Sekarang</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://i.ibb.co.com/qY7V4jH0/Whats-App-Image-2026-01-17-at-1.jpg" alt=">Pentol Sedang Isi 25" class="card-img" onclick="openModal(this)">
-                <div class="card-body">
-                    <div class="product-name">Pentol Sedang Isi 25</div>
-                    <div class="product-price">Rp 48.000</div>
-                    <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+pesan+Pentol+Sedang+Isi+25" class="btn-wa">Pesan Sekarang</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://i.ibb.co.com/TB3YGP04/Whats-App-Image-2026-01-17-at-10-03-11.jpg" alt="Pentol Daging Besar" class="card-img" onclick="openModal(this)">
-                <div class="card-body">
-                    <div class="product-name">Pentol Daging Besar</div>
-                    <div class="product-price">Rp 25.000</div>
-                    <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+pesan+Pentol+Daging+Besar" class="btn-wa">Pesan Sekarang</a>
                 </div>
             </div>
 
@@ -308,9 +365,18 @@
             <div class="card">
                 <img src="https://i.ibb.co.com/Pvkvk3Jn/Whats-App-Image-2026-01-17-at-10-03-13.jpg" alt="Petol Jumbo Isi 6" class="card-img" onclick="openModal(this)">
                 <div class="card-body">
-                    <div class="product-name">Petol Jumbo Isi 6</div>
+                    <div class="product-name">Pentol Jumbo Isi 6</div>
                     <div class="product-price">Rp 40.000</div>
                     <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+Pentol+Jumbo+Isi+6" class="btn-wa">Pesan Sekarang</a>
+                </div>
+            </div>
+          
+                      <div class="card">
+                <img src="https://i.ibb.co.com/KcV6vsst/isi-daging.jpg" alt="Petol Jumbo Isi Daging" class="card-img" onclick="openModal(this)">
+                <div class="card-body">
+                    <div class="product-name">Pentol Jumbo Isi Daging</div>
+                    <div class="product-price">Rp 25.000</div>
+                    <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+Pentol+Jumbo+Isi+Daging" class="btn-wa">Pesan Sekarang</a>
                 </div>
             </div>
 
@@ -323,6 +389,92 @@
                 </div>
             </div>
 
+            <div class="card">
+                <img src="https://i.ibb.co.com/PvMHggDt/Pedas.png" alt="Pentol Isi Pedas" class="card-img" onclick="openModal(this)">
+                <div class="card-body">
+                    <div class="product-name">Pentol Pedas</div>
+                    <div class="product-price">Rp 25.000</div>
+                    <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+pesan+Pentol+Pedas" class="btn-wa">Pesan Sekarang</a>
+                </div>
+            </div>
+          
+                      <div class="card">
+                <img src="https://i.ibb.co.com/5X41CZbq/Jamur.png" alt="Pentol Isi Jamur" class="card-img" onclick="openModal(this)">
+                <div class="card-body">
+                    <div class="product-name">Pentol Isi Jamur</div>
+                    <div class="product-price">Rp 25.000</div>
+                    <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+pesan+Pentol+Isi+Jamur" class="btn-wa">Pesan Sekarang</a>
+                </div>
+            </div>
+                      <div class="card">
+                <img src="https://i.ibb.co.com/7NxM6FZd/Keju.png" alt="Pentol Isi Keju" class="card-img" onclick="openModal(this)">
+                <div class="card-body">
+                    <div class="product-name">Pentol Isi Keju</div>
+                    <div class="product-price">Rp 25.000</div>
+                    <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+pesan+Pentol+Isi+Keju" class="btn-wa">Pesan Sekarang</a>
+                </div>
+            </div>
+    
+                                          <div class="card">
+                <img src="https://i.ibb.co.com/LDPLBd2j/siomay-jpg.jpg" alt="Siomay" class="card-img" onclick="openModal(this)">
+                <div class="card-body">
+                    <div class="product-name">Siomay</div>
+                    <div class="product-price">Rp 25.000</div>
+                    <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+pesan+Siomay" class="btn-wa">Pesan Sekarang</a>
+                </div>
+            </div>
+    
+                                <div class="card">
+                <img src="https://i.ibb.co.com/LhQfkhCP/cilok.png" alt="Cilok Kriwil" class="card-img" onclick="openModal(this)">
+                <div class="card-body">
+                    <div class="product-name">Cilok Kriwil</div>
+                    <div class="product-price">Rp 18.000</div>
+                    <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+pesan+Cilok+Kriwil" class="btn-wa">Pesan Sekarang</a>
+                </div>
+            </div>
+          
+                                          <div class="card">
+                <img src="https://i.ibb.co.com/d0hPMN46/tahu-jpg.jpg" alt="Tahu Daging" class="card-img" onclick="openModal(this)">
+                <div class="card-body">
+                    <div class="product-name">Tahu Daging</div>
+                    <div class="product-price">Rp 20.000</div>
+                    <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+pesan+Tahu+Daging" class="btn-wa">Pesan Sekarang</a>
+                </div>
+            </div>
+          
+                                                    <div class="card">
+                <img src="https://i.ibb.co.com/S47G3VXW/goreng-jpg.jpg" alt="Goreng" class="card-img" onclick="openModal(this)">
+                <div class="card-body">
+                    <div class="product-name">Goreng</div>
+                    <div class="product-price">Rp 20.000</div>
+                    <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+pesan+Goreng" class="btn-wa">Pesan Sekarang</a>
+                </div>
+            </div>
+          
+                             <div class="card">
+                <img src="https://i.ibb.co.com/qLwcWN0P/Kering-besar.png" alt="Bumbu Kering Besar" class="card-img" onclick="openModal(this)">
+                <div class="card-body">
+                    <div class="product-name">Bumbu Kering Besar</div>
+                    <div class="product-price">Rp 15.000</div>
+                    <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+pesan+bumbu+Kering+Besar" class="btn-wa">Pesan Sekarang</a>
+                </div>
+            </div>
+                                          <div class="card">
+                <img src="https://i.ibb.co.com/DBx49Q0/mini.png" alt="Bumbu Kering Mini" class="card-img" onclick="openModal(this)">
+                <div class="card-body">
+                    <div class="product-name">Bumbu Kering Mini</div>
+                    <div class="product-price">Rp 5.000</div>
+                    <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+pesan+Bumbu+Kering+Mini" class="btn-wa">Pesan Sekarang</a>
+                </div>
+            </div>
+                                                    <div class="card">
+                <img src="https://i.ibb.co.com/CsKxhDZD/Basah.png" alt="Bumbu Basah" class="card-img" onclick="openModal(this)">
+                <div class="card-body">
+                    <div class="product-name">Bumbu Basah</div>
+                    <div class="product-price">Rp 10.000</div>
+                    <a href="https://wa.me/6281330085835?text=Halo+admin,+saya+mau+pesan+Bumbu+Basah" class="btn-wa">Pesan Sekarang</a>
+                </div>
+            </div>
         </div>
     </div>
 
